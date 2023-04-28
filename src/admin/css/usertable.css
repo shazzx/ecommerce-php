@@ -1,0 +1,17 @@
+/* table, th, td{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    font-weight: 600;
+}
+
+h4{
+    font-weight: 500;
+}
+
+th, td {
+    padding: 10px;
+} */

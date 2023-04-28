@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.add-product{
+    background-color: black;
+    padding: 12px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.add-product-btn{
+    background-color: black;
+    border: none;
+    color: white;
+    cursor: pointer;
+
+}

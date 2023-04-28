@@ -1,0 +1,44 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px;
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+nav .title{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.nav_list{
+    display: flex;
+    gap: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    padding: 4px;
+}
+
+.nav_list a:hover{
+    background-color: black;
+    color: white;
+}
+
+a li {
+    list-style: none;
+}
+
+hr {
+    color: green;
+}

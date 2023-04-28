@@ -1,0 +1,48 @@
+body{
+    background-color: #eaece5;
+}
+
+.form-container{
+    width: 100%;
+    margin-inline: auto;
+}
+textarea {
+    max-width: 450px;
+}
+
+form{
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    margin-inline: auto;
+    padding: 20px;
+    background-color: white;
+    margin-top: 60px;
+    border-radius: 4px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+form input {
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+form button {
+    padding: 6px;
+    cursor: pointer;
+    width: 100%;
+}
+
+form select {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.btn-box{
+    display: flex; 
+    gap: 10px;
+}
+
+h3{
+    text-align: center;
+}

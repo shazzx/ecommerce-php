@@ -1,0 +1,18 @@
+.dashboard-container{
+    width: 100%;
+}
+.analytics{
+    display: flex;
+    max-width: 650px;
+    height: 400px;
+    margin-inline: auto;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.analytics_box{
+    width: 40%;
+    height: 40%;
+    background-color: black;
+    color: white;
+}
