@@ -15,39 +15,61 @@
 
         body{
             font-family: 'poppins',sans-serif;
+            width: 100%;
         }
 
         .sidebar-container{
-            max-width: 300px;
+            width: 100%;
+            box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.1);
             padding: 25px;
-            background-color: #f2f2f2
-        }
 
+        }
+        .categories-heading{
+            background-color: black;
+            color: white;
+            border-right: 10px solid red;
+            width: 100%;
+            padding: 10px;
+        }
         .sidebar-categories{
+            width: 100%;
             display: flex;
             flex-direction: column;
             font-size: 18px;
             gap: 16px;
         }
 
-        a{
+        .category{
             text-decoration: none;
+            padding: 5px;
             color: black;
+        }
+
+        .category:hover{
+            background-color: black;
+            color: white;
+            border-right: 5px solid red;
+        }
+
+        .category:active{
+            background-color: black;
+            color: white;
         }
     </style>
 <body>
     <div class="sidebar-container">
         <div class="sidebar-categories">
-            <a href="">Mobiles</a>
-            <a href="">Laptop</a>
-            <a href="">Mobile Accessories</a>
-            <a href="">Laptop Accessories</a>
-            <a href="">Clothes</a>
-            <a href="">T-Shirts</a>
-            <a href="">Shoes</a>
+            <h3 class="categories-heading">Categories</h3>
+            <a href="" class="category">Mobiles</a>
+            <a href="" class="category">Laptop</a>
+            <a href="" class="category">Mobile Accessories</a>
+            <a href="" class="category">Laptop Accessories</a>
+            <a href="" class="category">Clothes</a>
+            <a href="" class="category">T-Shirts</a>
+            <!-- <a href="">Shoes</a>
             <input id="price-range" type="range" min="100" max="1000" value="10" >
             <input id="price-input" type="number">
-            <h4 class="range-output"></h4>
+            <h4 class="range-output"></h4> -->
         </div>
     </div>
 

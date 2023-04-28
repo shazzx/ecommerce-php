@@ -33,13 +33,24 @@ if(isset($_POST)){
         }
         .home-container{
             display: flex;
-            max-width: 1400px;
             margin-inline: auto;
+            max-width: 1400px;
         }
 
+        @media screen and (max-width: 1000px) {
+            .home-container{
+                flex-direction: column;
+            }
+        }
+
+        .home-main{
+            max-width: 80%;
+            margin-inline: auto;
+        }
         .products{
             display: flex;
             gap: 30px;
+            align-items: center;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -79,10 +90,18 @@ if(isset($_POST)){
         .product-details_bottom button:hover{
             background-color: #171717;
         }
+
+        /* SIDEBAR */
+
+        .sidebar-main-container{
+            width: 20%;
+        }
     </style>
 </head>
 <body>
     <div class="home-container">
+        <div class="home-main">
+
         <div class="products">
             <?php 
             $num = 0;
@@ -110,7 +129,12 @@ if(isset($_POST)){
 
             <?php } ?>
         </div>
+        </div>
 
+        <div class="sidebar-main-container">
+
+            <?php require_once 'sidebar.php' ?>
+        </div>
     </div>
 
     <script>
