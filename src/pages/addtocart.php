@@ -11,8 +11,6 @@ $dbname = 'ecommerce';
 $connection = new mysqli($server, $user, $password, $dbname);
 
 $userId = $_SESSION["id"];
-
-//getting products cart product ids
 $query = "SELECT productId, count FROM addtocart WHERE userId='{$userId}'";
 $stmt = $connection->query($query);
 $result = $stmt->fetch_all(MYSQLI_ASSOC);
@@ -116,7 +114,7 @@ foreach($result as $productId => $value){
             <div class="addtocart-product">
                 <div class="product-id" hidden><?php echo $array[$count]["uuid"] ?></div>
                 <div class="product_img">
-                <img src="https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c06596740.png" alt="">
+                <img src="../admin/product/<?php echo $array[$count]["image"] ?>" alt="">
                 </div>
                 <div class="product_details">
                     <h4 class="details_title"><?php echo $array[$count]["productName"] ?></h4>

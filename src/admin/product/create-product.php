@@ -106,6 +106,8 @@ if(isset($_POST["submit"])){
     <label for="category">Category</label>
 
         <select name="category" id="">
+            <option value="laptops">Laptops</option>
+            <option value="mobiles">Mobiles</option>
                 <option value="clothes">Clothes</option>
                 <option value="shoes">Shoes</option>
                 <option value="t-shirt">T-Shirt</option>
