@@ -45,13 +45,14 @@ if(isset($_POST)){
         }
 
         .home-main{
-            max-width: 1100px;
+            margin-top: 20px;
+            max-width: 1200px;
             margin-inline: auto;
         }
         .products{
             display: flex;
             gap: 25px;
-            width: 1100px;
+            width: 100%;
             padding: 20px;
             align-items: center;
             flex-wrap: wrap;
@@ -123,11 +124,59 @@ if(isset($_POST)){
             width: 100%;
             padding: 20px;
         }
+
+        /* CATEGORIES */
+
+        .categories{
+            display: flex;
+            margin-top: 30px;
+            margin-inline: auto;
+            max-width: 85%;
+            overflow: scroll;
+            gap: 20px;
+            scrollbar-width: none;
+            
+        }
+
+        .categories::-webkit-scrollbar{
+            display: none;
+        }
+
+        .categories .category{
+            padding: 40px 60px;
+            color: white;
+            border-radius: 4px;
+            width: 240px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 18px;
+            background-color: black;
+            cursor: pointer;
+        }
+
+        .categories .category:hover{
+            background-color: crimson;
+        }
+
+        .scroll-btn{
+            background-color: black;
+        }
     </style>
 </head>
 <body>
     <div class="home-container">
         <main class="home-main">
+            <?php require_once 'slider.php' ?>
+
+            <div class="categories">
+                <div class="category">Mobiles</div>
+                <div class="category">Laptops</div>
+                <div class="category">Clothes</div>
+                <div class="category">Accessories</div>
+                <div class="category">Tablets</div>
+                <div class="category">Batteries</div>
+                <button class="scroll-btn">scroll</button>
+            </div>
 
         <div class="products">
             <?php 
@@ -165,11 +214,11 @@ if(isset($_POST)){
             <?php } ?>
         </div>
             </main>
-
+<!-- 
         <div class="sidebar-main-container">
 
             <?php require_once 'sidebar.php' ?>
-        </div>
+        </div> -->
     </div>
 
     <script>
@@ -223,9 +272,15 @@ buyNow.forEach((el, i) => {
     })
 })
 
-async function buyProduct(){
-}
+//SCROLLBAR
 
+let scrollbtn = document.querySelector('.scroll-btn')
+let categories =document.querySelector(".catogries")
+scrollbtn.addEventListener('click', () => {
+categories.scrollTo(200)
+console.log('hello')
+
+})
     </script>
 </body>
 </html>

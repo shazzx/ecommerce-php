@@ -4,40 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SLIDER</title>
     <style>
         .slider-container{
             display: flex;
-            max-width: 600px;
+            border-radius: 10px;
+            margin-inline:auto;
+            max-width: 1050px;
+            max-height: 380px;
             overflow: hidden;
             transition: all 0.3s ease-in-out;
         }
 
         .image-container{
             transition: all 0.6s ease-in-out;
-            width: 600px;
+            width: 1100px;
         }
 
         .image-container img{
-            max-width: 600px;
+            max-width: 1100px;
         }
     </style>
 </head>
 <body>
     <div class="slider-container">
         <div class="image-container">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80" alt="">
+            <img src="https://img.freepik.com/premium-psd/gaming-laptop-sale-promotion-social-media-post_252779-759.jpg?w=1060" alt="">
         </div>
         <div class="image-container">
-            <img src="https://rukminim1.flixcart.com/image/612/612/xif0q/shoe/t/6/w/9-vs-9500-9-world-wear-footwear-white-original-imagn6a5fqbncryj.jpeg?q=70" alt="">
+            <img src="https://dlcdnwebimgs.asus.com/gain/9D99F2E7-F028-4987-A73F-138C20994440/fwebp" alt="">
+        </div>        <div class="image-container">
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/2bbcfa99737217.5ef9be3dbb9a9.jpg        
+" alt="">
         </div>
         <div class="image-container">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80" alt="">
+            <img src="https://www.evetech.co.za/repository/ProductImages/intel-rtx-3080-gaming-laptops-banner-980px-v1.jpg" alt="">
         </div>
-        <div class="image-container">
-            <img src="https://rukminim1.flixcart.com/image/612/612/xif0q/shoe/t/6/w/9-vs-9500-9-world-wear-footwear-white-original-imagn6a5fqbncryj.jpeg?q=70" alt="">
-        </div>
-        
     </div>
     <script>
         let imageContainer = document.querySelectorAll('.image-container')
@@ -53,7 +55,7 @@
                 if(counter==imageContainer.length){
                     counter = 0
                 }
-        }, 6000)
+        }, 5000)
         
     </script>
 </body>
