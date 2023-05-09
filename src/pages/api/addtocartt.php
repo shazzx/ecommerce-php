@@ -12,7 +12,7 @@ $connection = new mysqli($server, $user, $password, $dbname);
 
 if($data = json_decode(file_get_contents("php://input"), true))
 
-    $userId = $_SESSION["id"];
+    $userId = $_SESSION["user"]["uuid"];
     $productId = $data;
 
     $result = $connection->query("SELECT productId, count FROM addtocart WHERE productId = '{$productId}'");

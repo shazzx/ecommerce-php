@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!$_SESSION['id']){
+if(!$_SESSION['user']['id']){
     session_destroy();
     header("location: http://localhost:100/project/src/pages/home.php?error=unauthorized");
 }
@@ -44,7 +44,7 @@ echo "hello";
        <div class="search_users">
         <button>Search</button>
 
-        <input type="search" name="search_users" placeholder="Search User By...">
+        <input class='user_search' type="search" name="search_users" placeholder="Search User By...">
             <select name="search_by" id="">
                 <option value="id">ID</option>
                 <option value="username">UID</option>
@@ -110,19 +110,27 @@ echo "hello";
 </div>
 
 </body>
-<!-- 
-<script>
-    let array = document.querySelector('.array')
 
-    id.forEach((id, i) => {
-        array.innerHTML += `
-        <form>
-        <div>
-        <h1>Shazz${id}</h1>
-        <a href="?id=${id}">delete</a>
-        </div>
-        </form>
-        `
+<script>
+    let userSearch = document.querySelector('.user_search');
+    console.log(userSearch)
+
+
+
+
+
+
+    // let array = document.querySelector('.array')
+
+    // id.forEach((id, i) => {
+    //     array.innerHTML += `
+    //     <form>
+    //     <div>
+    //     <h1>Shazz${id}</h1>
+    //     <a href="?id=${id}">delete</a>
+    //     </div>
+    //     </form>
+    //     `
 
     // let idItem = document.querySelectorAll('.id').forEach((id) =>{
     //     id.addEventListener('click', (e)=> {
@@ -131,7 +139,7 @@ echo "hello";
     //         console.log(id.innerText)
     //     })
     // })
-    })
+    // })
 
-</script> -->
+</script>
 </html>

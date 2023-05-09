@@ -17,7 +17,7 @@ if(isset($_POST["submit"])){
     echo $password_verify;
     if($password_verify == 1){
         session_start();
-        $_SESSION['id'] = $row['uuid'];
+        $_SESSION['user'] = ["id" => $row["uuid"], "username" => $row["username"], "role" => $row["role"]];
         header('location: http://localhost:100/project/src/admin/admin.php?status=login-success');
     }  
     else{

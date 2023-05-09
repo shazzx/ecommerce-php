@@ -10,7 +10,10 @@ $dbname = 'ecommerce';
 
 $connection = new mysqli($server, $user, $password, $dbname);
 
-$userId = $_SESSION["id"];
+if(!$_SESSION['user']['uuid']){
+    echo "Please Login";
+}
+$userId = $_SESSION["user"]['uuid'];
 $query = "SELECT productId, count FROM addtocart WHERE userId='{$userId}'";
 $stmt = $connection->query($query);
 $result = $stmt->fetch_all(MYSQLI_ASSOC);
@@ -59,6 +62,11 @@ foreach($result as $productId => $value){
         transform: translateX(0);
     } */
 
+    .addtocart-products{
+        width: 100%;
+        margin-inline:auto;
+    }
+
     .addtocart-details{
         display: flex;
         align-items: center;
@@ -82,6 +90,7 @@ foreach($result as $productId => $value){
         align-items: center;
         gap: 20px;
         background-color: #fff;
+        justify-content: center;
         border-radius: 4px;
         padding: 5px 20px;
     }
@@ -94,6 +103,10 @@ foreach($result as $productId => $value){
         width: 100%;
     }
 
+    .product_details{
+        width: 55%;
+    }
+
     .product_counter{
         display: flex;
     }
@@ -102,6 +115,15 @@ foreach($result as $productId => $value){
         padding: 5px;
         background-color: black;
         color: white;
+        cursor: pointer;
+    }
+
+    .removeProductBtn{
+        padding: 8px;
+        border-radius: 4px;
+        border: none;
+        color: white;
+        background-color: black;
         cursor: pointer;
     }
 </style>
@@ -125,6 +147,7 @@ foreach($result as $productId => $value){
                     <span class="counter_value"><?php echo $productCount[$count] ?></span>
                     <span class="counter_increment" >+</span>
                 </div>
+                <button class="removeProductBtn">REMOVE</button>
             </div>
             <?php }?>
         </div>
@@ -143,24 +166,29 @@ foreach($result as $productId => $value){
         let counterValue = document.querySelectorAll('.counter_value')
         let counterDecrement = document.querySelectorAll('.counter_decrement')
         let counterIncrement = document.querySelectorAll('.counter_increment')
+        let addtocartProducts = document.querySelector('.addtocart-products')
 
         // showCart.addEventListener('click', () => {
             // addtocartContainer.classList.toggle('active')
         // })
         let productId = document.querySelectorAll('.product-id')
 
+        //CART PRODUCT STOCK COUNTER
         counterDecrement.forEach((el, i) => {
             el.addEventListener('click', () => {
-            if(counterValue[i].innerText > 0){
+            if(counterValue[i].innerText > 1){
                 let count = --counterValue[i].innerText
                 let product_id =productId[i].innerText
                 let productDetails = JSON.stringify({
                     productId :product_id,
                     count,
+
                 })
+
                 chnageItemCount(productDetails)
             }
         })
+
         })
 
         counterIncrement.forEach((el, i) => {
@@ -191,6 +219,35 @@ foreach($result as $productId => $value){
             let data = await res.json()
             console.log(data)
         }
+
+        //REMOVE FROM CART
+        let removeProductBtn = document.querySelectorAll('.removeProductBtn')
+        removeProductBtn.forEach((removeBtn, i)=> {
+            removeBtn.addEventListener('click', () => {
+                let productId = removeBtn.parentElement.children[0].innerText
+                let removeProduct =removeBtn.parentElement
+                removeCartItem(productId, removeProduct)                
+            })
+
+        })
+
+        async function removeCartItem(productId, removeProduct){
+            let request = await fetch('api/deletefromcart.php', 
+            {
+                method: "DELETE", 
+                body : JSON.stringify(productId), 
+                headers : {
+                    "Content-Type" : "application/json;charset=utf8"
+                } })
+                let response = '';
+                if(await request.status == 200){
+                    response = await request.json()
+                    removeProduct.remove()
+                }else{
+                    response = 'uncaught error'
+                }
+        }
+
 
     </script>
 </body>

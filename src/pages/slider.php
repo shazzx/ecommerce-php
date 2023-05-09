@@ -18,11 +18,22 @@
 
         .image-container{
             transition: all 0.6s ease-in-out;
-            width: 1100px;
+            max-width: 1100px;
         }
 
         .image-container img{
             max-width: 1100px;
+        }
+
+        @media screen and (max-width: 600px){
+            .slider-container{
+                max-height: 200px;
+            }
+
+
+        .image-container img{
+            max-width: 600px;
+        }
         }
     </style>
 </head>

@@ -1,4 +1,28 @@
-<?php require_once '../../partials/header.php' ?>
+<?php 
+
+require_once '../../partials/header.php' ;
+
+//TEMPORARY DATABASE CONNECTION
+
+$server = 'localhost';
+$user  = 'root';
+$pwd = '';
+$dbname = 'ecommerce';
+
+$mysql_connection = new mysqli($server, $user, $pwd, $dbname);
+
+$deleteProductId = $_GET['id'];
+
+$result = $mysql_connection->query("DELETE FROM products WHERE uuid='{$deleteProductId}'");
+
+if($result){
+    header("location: http://localhost:100/project/src/admin/product/products.php");
+}else{
+    echo "there was an error while deleting your product please try again later";
+}
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">

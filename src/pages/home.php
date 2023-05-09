@@ -1,5 +1,9 @@
 <?php
+session_start();
 
+if(!$_SESSION["user"]["uuid"]){
+    header("location: http://localhost:100/project/src/user/login.php");
+}
 // Temporary Database Configuration
 $server = "localhost";
 $user = "root";
@@ -33,38 +37,73 @@ if(isset($_POST)){
             width: 100%;
         }
         .home-container{
-            display: flex;
+            padding: 4px;
             margin-inline: auto;
             max-width: 1400px;
         }
 
-        @media screen and (max-width: 880px) {
+        /* @media screen and (max-width: 880px) {
             .home-container{
                 flex-direction: column;
             }
-        }
+        } */
 
         .home-main{
             margin-top: 20px;
             max-width: 1200px;
             margin-inline: auto;
         }
+
+        /* PRODUCTS */
         .products{
             display: flex;
             gap: 25px;
-            width: 100%;
+            max-width: 1100px;
             padding: 20px;
             align-items: center;
-            flex-wrap: wrap;
-            justify-content: center;
+            margin-inline: auto;
+            mask-image: linear-gradient(90deg, black, 90%, transparent);
+            /* scrollbar-width: none; */
+            overflow: scroll;
+        }
+
+        .home-categories{
+            background-color: #171717;
+            border-radius: 2px;
+            font-family: inherit;
+            max-width:fit-content;
+            color: white;
+            margin-left: 70px;
+            margin-top: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .home-categories:hover{
+            background-color: crimson;
+        }
+
+        .products::-webkit-scrollbar{
+            display: none;
         }
 
         .product{
-            max-width: 260px;
+            width: 200px;
             padding: 20px;
             background-color: #f2f2f2;
             box-shadow: 10px 15px 10px rgba(0,0,0,0,1);
             border-radius: 4px;
+            transition: all 0.5s ease-in-out;
+        }
+
+        @media screen and (max-width: 600px){
+            .product{
+                width: 180px;
+                font-size: 14px;
+            }
+            .product h3{
+                font-size: 14px;
+            }
         }
 
 
@@ -129,13 +168,13 @@ if(isset($_POST)){
 
         .categories{
             display: flex;
-            margin-top: 30px;
             margin-inline: auto;
-            max-width: 85%;
+            max-width: 1000px;
             overflow: scroll;
             gap: 20px;
             scrollbar-width: none;
-            
+            transition: all 0.5s ease-in-out;        
+            scroll-behavior: smooth;    
         }
 
         .categories::-webkit-scrollbar{
@@ -143,31 +182,66 @@ if(isset($_POST)){
         }
 
         .categories .category{
-            padding: 40px 60px;
+            padding: 30px 50px;
             color: white;
+            transition: all 0.5s ease-in-out;            
+
             border-radius: 4px;
-            width: 240px;
+            width: 220px;
             text-align: center;
             font-weight: 600;
-            font-size: 18px;
-            background-color: black;
+            font-size: 16px;
+            background-color: crimson;
             cursor: pointer;
         }
 
         .categories .category:hover{
-            background-color: crimson;
+            background-color: #171717;
         }
 
-        .scroll-btn{
-            background-color: black;
+        .categories-container{
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-inline: auto;
+            max-width: 1050px;
         }
+
+        .scroll-btn,
+        .scroll-btn2{
+            border-radius: 10px;
+            background-color: crimson;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            border: none;
+        } 
+
+        @media screen and (max-width: 600px){
+
+            .categories .category{
+                max-width: 180px;
+                padding: 20px 40px;
+                font-size: 16px;
+                font-weight: 500;
+            }
+            .scroll-btn,
+            .scroll-btn2{
+                display: none;
+            } 
+}
+
+
     </style>
 </head>
 <body>
     <div class="home-container">
         <main class="home-main">
             <?php require_once 'slider.php' ?>
-
+            <div class="categories-container">
+                <button class="scroll-btn2"><</button>
             <div class="categories">
                 <div class="category">Mobiles</div>
                 <div class="category">Laptops</div>
@@ -175,12 +249,21 @@ if(isset($_POST)){
                 <div class="category">Accessories</div>
                 <div class="category">Tablets</div>
                 <div class="category">Batteries</div>
-                <button class="scroll-btn">scroll</button>
+            </div>
+            <button class="scroll-btn">></button>                
             </div>
 
+            <?php 
+            $categories = ["Laptops", "Mobiles", "Tablets", "Shoes", "Clothes"];
+            for($loopStop = 0; $loopStop<5;$loopStop++){
+            
+            ?>
+
+<div class="home-categories"><?php echo $categories[$loopStop] ?></div>
         <div class="products">
             <?php 
             for($count = 0; $count < count($result);$count++){
+                
             ?>
             <a href="./products/product.php?id=<?php echo $result[$count]["uuid"] ?>&product-name=<?php echo join("-", explode(" ",trim(strtolower($result[$count]["productName"])))) ?>">
 
@@ -213,11 +296,14 @@ if(isset($_POST)){
 
             <?php } ?>
         </div>
+        <?php } ?>
             </main>
 <!-- 
         <div class="sidebar-main-container">
 
-            <?php require_once 'sidebar.php' ?>
+            <?php
+            //  require_once 'sidebar.php'
+              ?>
         </div> -->
     </div>
 
@@ -275,9 +361,16 @@ buyNow.forEach((el, i) => {
 //SCROLLBAR
 
 let scrollbtn = document.querySelector('.scroll-btn')
-let categories =document.querySelector(".catogries")
+let scrollbtn2 = document.querySelector('.scroll-btn2')
+let categories =document.querySelector(".categories")
 scrollbtn.addEventListener('click', () => {
-categories.scrollTo(200)
+categories.scrollLeft += 200
+console.log('hello')
+
+})
+
+scrollbtn2.addEventListener('click', () => {
+categories.scrollLeft -= 200
 console.log('hello')
 
 })
